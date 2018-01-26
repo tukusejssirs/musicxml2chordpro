@@ -1,1 +1,4 @@
 *.pyc
+*~
+*.kate-swp
+tests*

@@ -62,7 +62,7 @@ class XML2Pro:
         self.root = self.tree.getroot()
 
         self.process_root()
-    
+
     def process_root(self):
         # Get the song name
         title_element = self.root.find('work/work-title')
@@ -90,7 +90,7 @@ class XML2Pro:
 
         # End of the header info, about to start with the chords and music.
         self.write('\n')
-        
+
         # Process each line of lyrics.
         # Need to work out how many lines there are...
         self.process_line(part, '1')
@@ -149,8 +149,13 @@ class XML2Pro:
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='Extract chords and lyrics from MusicXML file.')
+    parser = argparse.ArgumentParser(description='Extract chords and lyrics from MusicXML file in ChordPro format.')
     parser.add_argument('filenames', metavar='file', nargs='+', default='-', help='a MusicXML file to process')
+    parser.add_argument('-ns', '--note-spelling', nargs='+', default='standard', choices=['standard', 'german', 'full-german', 'solfeggio', 'french'],
+                        help='note spelling used in chord names (default: %(default)s)')
+    parser.add_argument('-lm', '--lower-minor', default="false", action='store_true', help='use lower-case minor chords (default: %(default)s)')
+    parser.add_argument('-lb', '--lower-bass', default="false", action='store_true', help='use lower-case bass notes (default: %(default)s)')
+    parser.add_argument('-ac', '--all-caps', default="false", action='store_true', help='use all-capitol note names (default: %(default)s)')
 
     args = parser.parse_args()
 
@@ -163,4 +168,3 @@ if __name__ == '__main__':
             data = filename
         x1 = XML2Pro(data, fout)
         x1.process_file()
-

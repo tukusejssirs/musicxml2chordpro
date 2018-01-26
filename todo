@@ -1,0 +1,6 @@
+xml2chpro
+=========
+
+- add option to use German chord names (either short or long versions: Ami = Am = a; B = H)
+- use the first chord as help in assigning key (e.g.: there are no sharps nor flats, therefore the key might be C major or a minor ... first chord in song is Am -> key = a minor)
+- sort the measures, before processing (line 102: We should really sort them by attribute 'number'. ... src: https://github.com/ironss/musicxml2chordpro/blob/db451274da5e8ae4adc0c863a4dafc131f23c912/xml2pro.py#L102)
