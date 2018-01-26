@@ -45,10 +45,10 @@ keys = {
 
 
 alters = {
-   -2: 'bb',
+   -2: 'bb',  # Alternatively (using UTF-8), use U+266D symbol)
    -1: 'b',
     0: '',
-    1: '#',
+    1: '#',  # Alternatively (using UTF-8), use U+266F symbol)
     2: '##',
 }
 
@@ -156,11 +156,15 @@ if __name__ == '__main__':
     parser.add_argument('-lm', '--lower-minor', default="false", action='store_true', help='use lower-case minor chords (default: %(default)s)')
     parser.add_argument('-lb', '--lower-bass', default="false", action='store_true', help='use lower-case bass notes (default: %(default)s)')
     parser.add_argument('-ac', '--all-caps', default="false", action='store_true', help='use all-capitol note names (default: %(default)s)')
+    parser.add_argument('-l', '--lang', default="en", choices=['en', 'sk'], nargs='+', help='change language of output file (key signature) (default: %(default)s)')
 
     args = parser.parse_args()
 
     import sys
     fout = sys.stdout
+
+    #print("%s", fout)
+
     for filename in args.filenames:
         if filename == '-':
             data = sys.stdin
