@@ -7,6 +7,51 @@ xml2chpro
 - sort the measures, before processing (line 102: We should really sort them by attribute 'number'. ... src: https://github.com/ironss/musicxml2chordpro/blob/db451274da5e8ae4adc0c863a4dafc131f23c912/xml2pro.py#L102)
 
 - add details from <credit page="1"> (page number might change; this might include the title of the score - which might not be inserted in `workTitle` var)
+  - python: span = item.find("span", class_="modelYearSort")
 - add language argument [for key: A major (en) = A dur (sk); A minor = A mol (sk)]
 - alternatively (using UTF-8), use U+266D symbol: ♭
 - alternatively (using UTF-8), use U+266F symbol: ♯
+- decide what order should be used for title, subtitle, composer, lyricist, translator, etc metadata
+
+
+
+vars
+- title
+- subtitle
+- composer
+- lyricist
+- translator
+- copyright
+- album
+- year (of creation/composition)
+- current key (when transcribed); else: key
+- time
+- tempo
+- duration
+- capo
+- meta
+- start_of_chorus | end_of_chorus
+- start_of_verse | end_of_verse
+- default key
+
+(unsupported or unknown metadata should be processed with http://www.chordpro.org/chordpro/ChordPro-Configuration-Format-Strings.html)
+
+(if var exists, print it to output/file)
+
+- comment
+
+
+
+
+
+todo
+- option to save oytput to file
+- get start/end of verse/chorus
+- multiline verse (2nd verse in second line)
+- option (arg) to display diagrams of all chords used in lyrics at the end of the file
+- option (arg) to display chord diagrams list at the end of the file
+- option to display fingering in diagrams
+- optional transcription (by interval or to key)
+- change the hyphen prefixed chords within words to be optional (create an option/arg)
+
+http://www.pmwiki.org/wiki/Cookbook/ChordPro-Format

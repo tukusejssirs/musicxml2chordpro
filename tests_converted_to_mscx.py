@@ -65,30 +65,91 @@ class XML2Pro:
 		self.process_root()
 
 	def process_root(self):
-		#arranger_element = self.root.find('identification')
+		# Get metaTag type metadata
+		score_root = self.root.find('Score')
+		sss_attrib = score_root[9].attrib
 
-		#for creator in arranger_element:
-			#print(creator.tag, creator.attrib)
+		metatag_attribute = score_root.find('metaTag').attrib['name']
 
-		#print(arranger_element[1].text)    # e.g. prints: This is the Composer
-		#print(arranger_element[1].attrib)  # e.g. prints: {'type': 'composer'}
+		for metatag in score_root.findall('metaTag'):
+			metatag_name = metatag.get('name')
+			metatag_text = metatag.text
+
+			if metatag_name == "arranger":
+				arranger = metatag_text
+
+			if metatag_name == "composer":
+				composer = metatag_text
+
+			if metatag_name == "copyright":
+				copyright = metatag_text
+
+			if metatag_name == "creationDate":
+				creationDate = metatag_text
+
+			if metatag_name == "lyricist":
+				lyricist = metatag_text
+
+			if metatag_name == "movementNumber":
+				movementNumber = metatag_text
+
+			if metatag_name == "movementTitle":
+				movementTitle = metatag_text
+
+			if metatag_name == "originalFormat":
+				originalFormat = metatag_text
+
+			if metatag_name == "platform":
+				platform = metatag_text
+
+			if metatag_name == "poet":
+				poet = metatag_text
+
+			if metatag_name == "source":
+				source = metatag_text
+
+			if metatag_name == "translator":
+				translator = metatag_text
+
+			if metatag_name == "workNumber":
+				workNumber = metatag_text
+
+			if metatag_name == "workTitle":  # done
+				workTitle = metatag_text
+
+			if metatag_name == "subtitle":  # done
+				subtitle = metatag_text
+
+
+		# TODO
+		# - add
+		#	  - key
+		#   - time
+		#   - tempo
+
+
+		# Write metadata
+		if 'workTitle' in locals():
+			self.write('{{title:{title}}}\n'.format(title=workTitle))
+		if 'subtitle' in locals():
+			self.write('{{subtitle:{subtitle}}}\n'.format(subtitle=subtitle))
 
 
 		#print('{root}'.format(root=arranger_element.text))
 		# Get the song title
-		title_element = self.root.find('work/work-title')
-		if title_element != None:
-			self.title = title_element.text;
-			self.write('{{title:{title}}}\n'.format(title=self.title))
+		#title_element = self.root.find('work/work-title')
+		#if title_element != None:
+			#self.title = title_element.text;
+			#self.write('{{title:{title}}}\n'.format(title=self.title))
 
-		# Get the song work number
-		work_number_element = self.root.find('work/work-number')
-		if work_number_element != None:
-			self.work_number = work_number_element.text
-			self.write('{{work_number:{work_number}}}\n'.format(work_number=self.work_number))
+		## Get the song work number
+		#work_number_element = self.root.find('work/work-number')
+		#if work_number_element != None:
+			#self.work_number = work_number_element.text
+			#self.write('{{work_number:{work_number}}}\n'.format(work_number=self.work_number))
 
-		# Get the song arranger, composer, lyricist, poet, translator
-		arranger_element = self.root.find('identification')
+		## Get the song arranger, composer, lyricist, poet, translator
+		#arranger_element = self.root.find('identification')
 
 		#for item in arranger_element:
 			#creator = item.attrib
