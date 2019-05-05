@@ -1,6 +1,8 @@
 # musicxml2chordpro
 Extract chord charts from MusicXML files
 
+**I archived this GitHub repo as I have moved it to [GitLab](https://gitlab.com/tukusejssirs/musicxml2chordpro).**
+
 
 ## Proposed usage
 
